@@ -14,7 +14,12 @@ lint:
 
 .PHONY: test
 test:
-	npm run front	
+	npm run test
+
+.PHONY: deploy
+deplot:
+	pwd
+
 
 .PHONY: help
 help: ## Displays this help
