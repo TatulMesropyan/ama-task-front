@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const StatementProcessor = () => {
   const [file, setFile] = useState(null);
   const [output, setOutput] = useState("");
-  const [link, setLink] = useState(null);
+  // const [link, setLink] = useState(null);
 
   const handleFileUpload = (event) => {
     const selectedFile = event.target.files[0];
