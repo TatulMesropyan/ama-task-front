@@ -19,11 +19,15 @@ const StatementProcessor = () => {
       return;
     }
     try {
-      const blob = new Blob([file], { type: file.type });
-      const response = await fetch("testapi", {
-        method: "POST",
-        body: blob,
-      });
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await fetch(
+        `http://192.168.16.100:8080/upload/${file.type.split("/")[1]}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       if (response.ok) {
         const result = await response.json();
         setOutput(result.message);
