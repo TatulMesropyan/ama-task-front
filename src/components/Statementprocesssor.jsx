@@ -3,7 +3,6 @@ import React, { useState } from "react";
 const StatementProcessor = () => {
   const [file, setFile] = useState(null);
   const [output, setOutput] = useState("");
-  // const [link, setLink] = useState(null);
 
   const handleFileUpload = (event) => {
     const selectedFile = event.target.files[0];
@@ -38,12 +37,37 @@ const StatementProcessor = () => {
   };
 
   return (
-    <div>
-      <h1>Bank Customer Statement Processor</h1>
-      <input type="file" accept=".csv, .xml" onChange={handleFileUpload} />
-      <button onClick={processFile}>Process File</button>
-      {/* <a href={link}>Test download blob</a> */}
-      <div id="output">{output}</div>
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <h1 style={{ color: "#333" }}>Bank Customer Statement Processor</h1>
+      <input
+        type="file"
+        accept=".csv, .xml"
+        onChange={handleFileUpload}
+        style={{ margin: "10px 0", padding: "5px", borderRadius: "5px" }}
+      />
+      <button
+        onClick={processFile}
+        style={{
+          backgroundColor: "#4CAF50",
+          color: "white",
+          padding: "10px",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Process File
+      </button>
+      <div
+        id="output"
+        style={{
+          marginTop: "20px",
+          padding: "10px",
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+        }}
+      >
+        {output}
+      </div>
     </div>
   );
 };
