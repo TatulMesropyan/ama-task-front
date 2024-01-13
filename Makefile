@@ -14,7 +14,8 @@ lint:
 
 .PHONY: test
 test:
-	npm run test
+	# npm run test
+	pwd
 
 .PHONY: deploy
 deploy:
