@@ -17,8 +17,9 @@ test:
 	npm run test
 
 .PHONY: deploy
-deplot:
-	pwd
+deploy:
+    aws s3 sync build/ s3://ama-frontend --region eu-central-1
+
 
 
 .PHONY: help
