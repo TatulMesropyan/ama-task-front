@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const StatementProcessor = () => {
   const [file, setFile] = useState(null);
   const [output, setOutput] = useState("");
+  const [validations, setValidations] = useState([]);
 
   const handleFileUpload = (event) => {
     const selectedFile = event.target.files[0];
@@ -21,16 +22,13 @@ const StatementProcessor = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(
-        `http://192.168.16.100:8080/upload/${file.type.split("/")[1]}`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`http://192.168.16.100:8080/upload`, {
+        method: "POST",
+        body: formData,
+      });
       if (response.ok) {
         const result = await response.json();
-        setOutput(result.message);
+        setValidations(result.validations);
       } else {
         setOutput("Error processing the file on the server.");
       }
@@ -72,6 +70,18 @@ const StatementProcessor = () => {
       >
         {output}
       </div>
+      {validations.length ? (
+        validations.map((validation, index) => (
+          <div key={index}>
+            <p>Reference: {validation.reference}</p>
+            <p>Description: {validation.description}</p>
+            <p>Validation: {validation.validation}</p>
+            <hr />
+          </div>
+        ))
+      ) : (
+        <p> No validations found.</p>
+      )}
     </div>
   );
 };
