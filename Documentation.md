@@ -1,6 +1,6 @@
 # Bank Customer Statement Processor - Frontend
 
-The frontend of the Bank Customer Statement Processor allows users to upload CSV or XML files for validation. It communicates with the backend API hosted at `https://1zwc7r4pp1.execute-api.eu-central-1.amazonaws.com/default`.
+The frontend of the Bank Customer Statement Processor allows users to upload CSV or XML files for validation. It communicates with the backend API hosted at `https://9fh7ccld16.execute-api.eu-central-1.amazonaws.com/default`.
 
 ## Usage
 

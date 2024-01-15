@@ -1,10 +1,10 @@
 import React from "react";
-import StatementProcessor from "./components/Statementprocesssor";
+import StatementProcessorPage from "./components/Statementprocesssor";
 
 function App() {
   return (
     <div>
-      <StatementProcessor />
+      <StatementProcessorPage />
     </div>
   );
 }
