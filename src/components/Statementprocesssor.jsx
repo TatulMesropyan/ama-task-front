@@ -35,10 +35,13 @@ const StatementProcessorPage = () => {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await fetch("http://192.168.16.100:8080/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://9fh7ccld16.execute-api.eu-central-1.amazonaws.com/default/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         const result = await response.json();
@@ -89,7 +92,7 @@ const StatementProcessorPage = () => {
             Processing...
             <CircularProgress size={20} />
           </Typography>
-        ) : Array.isArray(validations) && validations.length ? (
+        ) : validations.length ? (
           <Stack useFlexGap sx={{ marginTop: "35px" }}>
             {validations?.map((validation, index) => (
               <div key={index} style={{ marginBottom: "20px" }}>
