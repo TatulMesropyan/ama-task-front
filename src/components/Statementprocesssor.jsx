@@ -79,6 +79,7 @@ const StatementProcessorPage = () => {
               accept: ".csv, .xml",
             }}
             onChange={handleFileUpload}
+            sx={{ width: "300px" }}
           />
           <Button
             onClick={processFile}
@@ -94,32 +95,45 @@ const StatementProcessorPage = () => {
         {isLoading ? (
           <Typography
             variant="subtitle1"
-            sx={{ fontStyle: "italic", color: "#888" }}
+            sx={{ fontStyle: "italic", color: "#888", marginTop: "20px" }}
           >
             Processing...
-            <CircularProgress size={20} />
+            <CircularProgress size={20} sx={{ marginLeft: "10px" }} />
           </Typography>
         ) : validations.length ? (
           <Stack useFlexGap sx={{ marginTop: "35px" }}>
             {validations?.map((row, index) => (
-              <div key={index} style={{ marginBottom: "20px" }}>
+              <Box
+                key={index}
+                sx={{
+                  marginBottom: "20px",
+                  border: "1px solid #ccc",
+                  padding: "15px",
+                  borderRadius: "8px",
+                }}
+              >
                 <Typography variant="h6">Reference: {row.reference}</Typography>
                 <Typography>Description: {row.description}</Typography>
-                <Typography>Validation: {row.validation}</Typography>
                 <Typography>
                   Calculated end balance: {row.calculatedEndBalance}
                 </Typography>
                 <Typography>
                   Actual end balance: {row.actualEndBalance}
                 </Typography>
-                <Divider style={{ margin: "10px 0" }} />
-              </div>
+                <Divider
+                  style={{
+                    margin: "15px 0",
+                    backgroundColor: "#ccc",
+                  }}
+                />
+                <Typography color="error">{row.validation}</Typography>
+              </Box>
             ))}
           </Stack>
         ) : (
           <Typography
             variant="subtitle1"
-            sx={{ fontStyle: "italic", color: "#888" }}
+            sx={{ fontStyle: "italic", color: "#888", marginTop: "20px" }}
           >
             No validations to show.
           </Typography>
