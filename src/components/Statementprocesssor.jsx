@@ -72,7 +72,13 @@ const StatementProcessorPage = () => {
           Bank Customer Statement Processor
         </Typography>
         <Box display="flex" flexDirection="row" gap="100px" alignItems="center">
-          <Input type="file" accept=".csv .xml" onChange={handleFileUpload} />
+          <Input
+            type="file"
+            inputProps={{
+              accept: ".csv, .xml",
+            }}
+            onChange={handleFileUpload}
+          />
           <Button
             onClick={processFile}
             disabled={isLoading}
