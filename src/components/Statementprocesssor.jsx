@@ -63,7 +63,6 @@ const StatementProcessor = () => {
         Process File
       </button>
       <div
-        id="output"
         style={{
           marginTop: "20px",
           padding: "10px",
