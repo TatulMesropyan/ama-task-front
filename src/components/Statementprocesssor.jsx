@@ -28,7 +28,7 @@ const StatementProcessorPage = () => {
     try {
       if (!file) {
         setOpenSnackbar(true);
-        setSnackbarMessage("Error: No file selected.");
+        setSnackbarMessage("No file selected");
         return;
       }
 
@@ -73,6 +73,7 @@ const StatementProcessorPage = () => {
         </Typography>
         <Box display="flex" flexDirection="row" gap="100px" alignItems="center">
           <Input
+            disabled={isLoading}
             type="file"
             inputProps={{
               accept: ".csv, .xml",
