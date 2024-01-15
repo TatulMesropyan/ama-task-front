@@ -29,22 +29,28 @@ const StatementProcessorPage = () => {
       if (!file) {
         setOpenSnackbar(true);
         setSnackbarMessage("Error: No file selected.");
+        return;
       }
+
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(
-        `https://9fh7ccld16.execute-api.eu-central-1.amazonaws.com/default/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const result = await response.json();
-      setValidations(result.validations);
+
+      const response = await fetch("http://192.168.16.100:8080/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setValidations(result.validations);
+      } else {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.errorMessage);
+      }
     } catch (error) {
-      console.error("Error sending file to the server:", error);
+      console.error(error.message);
       setOpenSnackbar(true);
-      setSnackbarMessage(error);
+      setSnackbarMessage(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -83,9 +89,9 @@ const StatementProcessorPage = () => {
             Processing...
             <CircularProgress size={20} />
           </Typography>
-        ) : validations?.length ? (
+        ) : Array.isArray(validations) && validations.length ? (
           <Stack useFlexGap sx={{ marginTop: "35px" }}>
-            {validations.map((validation, index) => (
+            {validations?.map((validation, index) => (
               <div key={index} style={{ marginBottom: "20px" }}>
                 <Typography variant="h6">
                   Reference: {validation.reference}
