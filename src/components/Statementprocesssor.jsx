@@ -72,7 +72,7 @@ const StatementProcessorPage = () => {
           Bank Customer Statement Processor
         </Typography>
         <Box display="flex" flexDirection="row" gap="100px" alignItems="center">
-          <Input type="file" accept=".csv, .xml" onChange={handleFileUpload} />
+          <Input type="file" accept=".csv .xml" onChange={handleFileUpload} />
           <Button
             onClick={processFile}
             disabled={isLoading}
@@ -94,13 +94,17 @@ const StatementProcessorPage = () => {
           </Typography>
         ) : validations.length ? (
           <Stack useFlexGap sx={{ marginTop: "35px" }}>
-            {validations?.map((validation, index) => (
+            {validations?.map((row, index) => (
               <div key={index} style={{ marginBottom: "20px" }}>
-                <Typography variant="h6">
-                  Reference: {validation.reference}
+                <Typography variant="h6">Reference: {row.reference}</Typography>
+                <Typography>Description: {row.description}</Typography>
+                <Typography>Validation: {row.validation}</Typography>
+                <Typography>
+                  Calculated end balance: {row.calculatedEndBalance}
                 </Typography>
-                <Typography>Description: {validation.description}</Typography>
-                <Typography>Validation: {validation.validation}</Typography>
+                <Typography>
+                  Actual end balance: {row.actualEndBalance}
+                </Typography>
                 <Divider style={{ margin: "10px 0" }} />
               </div>
             ))}
