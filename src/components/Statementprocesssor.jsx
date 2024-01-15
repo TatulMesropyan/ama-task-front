@@ -22,10 +22,13 @@ const StatementProcessor = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(`http://192.168.16.100:8080/upload`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `https://1zwc7r4pp1.execute-api.eu-central-1.amazonaws.com/default/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       if (response.ok) {
         const result = await response.json();
         setValidations(result.validations);
